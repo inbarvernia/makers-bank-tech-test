@@ -15,6 +15,9 @@ class BankAccount
 
   def print_statement
     print "date || credit || debit || balance\n"
+    @transactions.each do |transaction|
+      print "#{transaction[:date]} || #{sprintf("%.2f", transaction[:amount])} || || #{sprintf("%.2f", transaction[:balance])}"
+    end
   end
 
   private

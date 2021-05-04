@@ -9,12 +9,12 @@ describe BankAccount do
     end
 
     it 'increases balance by amount specified' do
-      expect { subject.deposit(1000, '10-01-2012') }.to change { subject.balance }.by(1000)
+      expect { subject.deposit(1000, '10/01/2012') }.to change { subject.balance }.by(1000)
     end
 
     it 'saves the transaction information' do
-      subject.deposit(1000, '10-01-2012')
-      expect(subject.transactions).to include({ date: '10-01-2012', amount: 1000.0, balance: 1000.0 })
+      subject.deposit(1000, '10/01/2012')
+      expect(subject.transactions).to include({ date: '10/01/2012', amount: 1000.0, balance: 1000.0 })
     end
   end
 
@@ -26,8 +26,8 @@ describe BankAccount do
     end
 
     context 'when one transaction has been made' do
-      xit 'prints a header followed by transaction details' do
-        subject.deposit(1000, '10-01-2012')
+      it 'prints a header followed by transaction details' do
+        subject.deposit(1000, '10/01/2012')
         expect { subject.print_statement }
           .to output("date || credit || debit || balance\n10/01/2012 || 1000.00 || || 1000.00").to_stdout
       end
