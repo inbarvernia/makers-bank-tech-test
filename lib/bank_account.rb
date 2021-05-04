@@ -8,4 +8,8 @@ class BankAccount
   def deposit(amount, date)
     @balance += amount
   end
+
+  def print_statement
+    print "date || credit || debit || balance\n"
+  end
 end

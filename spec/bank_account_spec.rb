@@ -13,7 +13,7 @@ describe BankAccount do
 
   describe '#print_statement' do
     it "prints a header" do
-      expect {subject.print_statement}.to output("date || credit || debit || balance").to_stdout
+      expect {subject.print_statement}.to output("date || credit || debit || balance\n").to_stdout
     end
   end
 end
