@@ -7,14 +7,21 @@ describe BankAccount do
     end
 
     it "increases balance by amount specified" do
-      expect {subject.deposit(1000, "10-01-2012")}.to change {subject.balance}.by(1000)
+      expect { subject.deposit(1000, "10-01-2012") }.to change { subject.balance }.by(1000)
     end
   end
 
   describe '#print_statement' do
     context "when no transactions have been made" do
       it "prints a header" do
-        expect {subject.print_statement}.to output("date || credit || debit || balance\n").to_stdout
+        expect { subject.print_statement }.to output("date || credit || debit || balance\n").to_stdout
+      end
+    end
+
+    context "when one transaction has been made" do
+      it "prints a header followed by transaction details" do
+        subject.deposit(1000, "10-01-2012")
+        expect { subject.print_statement }.to output("date || credit || debit || balance\n10/01/2012 || 1000.00 || || 1000.00").to_stdout
       end
     end
   end
