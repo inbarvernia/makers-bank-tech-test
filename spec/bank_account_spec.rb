@@ -28,9 +28,8 @@ describe BankAccount do
     context 'when one transaction has been made' do
       xit 'prints a header followed by transaction details' do
         subject.deposit(1000, '10-01-2012')
-        expect do
-          subject.print_statement
-        end.to output("date || credit || debit || balance\n10/01/2012 || 1000.00 || || 1000.00").to_stdout
+        expect { subject.print_statement }
+          .to output("date || credit || debit || balance\n10/01/2012 || 1000.00 || || 1000.00").to_stdout
       end
     end
   end
