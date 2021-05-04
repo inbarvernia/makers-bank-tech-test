@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BankAccount
   attr_reader :balance
 
@@ -5,7 +7,7 @@ class BankAccount
     @balance = 0
   end
 
-  def deposit(amount, date)
+  def deposit(amount, _date)
     @balance += amount
   end
 
