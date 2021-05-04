@@ -12,8 +12,10 @@ describe BankAccount do
   end
 
   describe '#print_statement' do
-    it "prints a header" do
-      expect {subject.print_statement}.to output("date || credit || debit || balance\n").to_stdout
+    context "when no transactions have been made" do
+      it "prints a header" do
+        expect {subject.print_statement}.to output("date || credit || debit || balance\n").to_stdout
+      end
     end
   end
 end
