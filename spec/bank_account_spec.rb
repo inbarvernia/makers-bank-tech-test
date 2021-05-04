@@ -1,3 +1,5 @@
+require '../lib/bank_account'
+
 describe BankAccount do
   describe '#deposit' do
     it "is a method that takes two arguments" do
