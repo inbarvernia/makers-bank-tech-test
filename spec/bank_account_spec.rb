@@ -3,18 +3,20 @@
 require 'bank_account'
 
 describe BankAccount do
+  let(:date) { Date.new(2012, 1, 10) }
+
   describe '#deposit' do
     it 'is a method that takes two arguments' do
       expect(subject).to respond_to(:deposit).with(2).arguments
     end
 
     it 'increases balance by amount specified' do
-      expect { subject.deposit(1000, '10/01/2012') }.to change { subject.balance }.by(1000)
+      expect { subject.deposit(1000, date) }.to change { subject.balance }.by(1000)
     end
 
     it 'saves the transaction information' do
-      subject.deposit(1000, '10/01/2012')
-      expect(subject.transactions).to include({ date: '10/01/2012', amount: 1000.0, balance: 1000.0 })
+      subject.deposit(1000, date)
+      expect(subject.transactions).to include({ date: date, amount: 1000.0, balance: 1000.0 })
     end
   end
 
@@ -27,7 +29,7 @@ describe BankAccount do
 
     context 'when one transaction has been made' do
       it 'prints a header followed by transaction details' do
-        subject.deposit(1000, '10/01/2012')
+        subject.deposit(1000, date)
         expect { subject.print_statement }
           .to output("date || credit || debit || balance\n10/01/2012 || 1000.00 || || 1000.00").to_stdout
       end

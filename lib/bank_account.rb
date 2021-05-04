@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+require 'date'
 
 class BankAccount
   attr_reader :balance, :transactions
@@ -16,13 +17,14 @@ class BankAccount
   def print_statement
     print "date || credit || debit || balance\n"
     @transactions.each do |transaction|
-      print "#{transaction[:date]} || #{sprintf("%.2f", transaction[:amount])} || || #{sprintf("%.2f", transaction[:balance])}"
+      print "#{transaction[:date].strftime('%d/%m/%Y')} || #{format('%.2f', transaction[:amount])} || || #{format('%.2f', transaction[:balance])}"
     end
   end
 
   private
+
   def save_transaction(amount, date)
-     transaction = {
+    transaction = {
       date: date,
       amount: amount.to_f,
       balance: @balance.to_f

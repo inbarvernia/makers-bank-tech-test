@@ -23,3 +23,9 @@
 | ------------------------------- | ----------------------------------- |
 | Properties (instance variables) | transactions (array), balance (int) |
 | Actions (methods)               | deposit, withdraw, print_statement  |
+
+Next steps:
+
+- TDD withdrawals similarly to deposits
+- Test print_statement with multiple transactions to make sure it reverses order
+- Probably refactor print_statement so that it uses a support method called format_transactions which returns the transactions as an array of strings, then in print_statement method it would only need to join the array with '\n' (can also have a separate header method which is called in print_transactions)
