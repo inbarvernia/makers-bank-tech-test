@@ -10,8 +10,16 @@ describe BankAccount do
       expect(subject).to respond_to(:deposit).with(1..2).arguments
     end
 
-    it 'increases balance by amount specified' do
-      expect { subject.deposit(1000, date) }.to change { subject.balance }.by(1000)
+    context 'when amount is a positive number' do
+      it 'increases balance by amount specified' do
+        expect { subject.deposit(1000) }.to change { subject.balance }.by(1000)
+      end
+    end
+    context 'when amount is negative or 0' do
+      it 'throws an error message' do
+        expect { subject.deposit(-1000) }.to raise_error("Deposit amount must be greater than 0")
+        expect { subject.deposit(0) }.to raise_error("Deposit amount must be greater than 0")
+      end
     end
 
     context 'when a date is provided' do
