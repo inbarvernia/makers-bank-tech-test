@@ -6,7 +6,7 @@ describe BankAccount do
   let(:date) { Date.new(2012, 1, 10) }
 
   describe '#deposit' do
-    it 'is a method that takes two arguments' do
+    it 'is a method that takes one or two arguments' do
       expect(subject).to respond_to(:deposit).with(1..2).arguments
     end
 
@@ -24,6 +24,12 @@ describe BankAccount do
         subject.deposit(1000)
         expect(subject.transactions).to include({ date: Date.today, amount: 1000.0, balance: 1000.0 })
       end
+    end
+  end
+
+  describe '#withdraw' do
+    it 'is a method that takes one or two arguments' do
+      expect(subject).to respond_to(:withdraw).with(1..2).arguments
     end
   end
 
