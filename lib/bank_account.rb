@@ -1,4 +1,5 @@
 # frozen_string_literal: true
+
 require 'date'
 
 class BankAccount
@@ -10,13 +11,15 @@ class BankAccount
   end
 
   def deposit(amount, date = Date.today)
-    raise "Deposit amount must be greater than 0" if amount <= 0
+    raise 'Deposit amount must be greater than 0' if amount <= 0
+
     @balance += amount
     save_transaction(amount, date)
   end
 
   def withdraw(amount, date = Date.today)
-    raise "Withdrawal amount must be greater than 0" if amount <= 0
+    raise 'Withdrawal amount must be greater than 0' if amount <= 0
+
     @balance -= amount
     save_transaction(-amount, date)
     # saving transaction with negative amount to indicate it as a withdrawal

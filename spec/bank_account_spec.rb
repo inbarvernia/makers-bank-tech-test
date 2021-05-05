@@ -17,8 +17,8 @@ describe BankAccount do
     end
     context 'when amount is negative or 0' do
       it 'throws an error message' do
-        expect { subject.deposit(-1000) }.to raise_error("Deposit amount must be greater than 0")
-        expect { subject.deposit(0) }.to raise_error("Deposit amount must be greater than 0")
+        expect { subject.deposit(-1000) }.to raise_error('Deposit amount must be greater than 0')
+        expect { subject.deposit(0) }.to raise_error('Deposit amount must be greater than 0')
       end
     end
 
@@ -47,8 +47,8 @@ describe BankAccount do
     end
     context 'when amount is 0 or less' do
       it 'throws an error message' do
-        expect { subject.withdraw(-1000) }.to raise_error("Withdrawal amount must be greater than 0")
-        expect { subject.withdraw(0) }.to raise_error("Withdrawal amount must be greater than 0")
+        expect { subject.withdraw(-1000) }.to raise_error('Withdrawal amount must be greater than 0')
+        expect { subject.withdraw(0) }.to raise_error('Withdrawal amount must be greater than 0')
       end
     end
 
