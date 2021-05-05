@@ -36,6 +36,8 @@ I started by creating a domain model (in `planning.md`); I then developed a Bank
 - If a user attempts to withdraw or deposit a negative amount or zero, an error will be raised
 - Users can call the method `#print_statement` to view a simple statement of their transaction history in reverse chronological order, including dates, amount in credit or debit, and balance at the time, for each transaction, with appropriate column headings
 
+I have used an additional class called Transaction, whose instances represent individual transactions. This is not interacted with directly by the user, but is used by the BankAccount class to save and access transaction details, following the Single-Responsibility Priniciple.
+
 ### How to use and run tests
 
 1. Clone the repo locally
