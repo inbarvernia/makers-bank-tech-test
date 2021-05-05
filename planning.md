@@ -19,7 +19,7 @@
 | withdraw        | changes transactions, reads and changes balance |
 | print_statement | reads transactions                              |
 
-| Class (Owner)                   | Account                             |
-| ------------------------------- | ----------------------------------- |
-| Properties (instance variables) | transactions (array), balance (int) |
-| Actions (methods)               | deposit, withdraw, print_statement  |
+| Class (Owner)                   | Account                                |
+| ------------------------------- | -------------------------------------- |
+| Properties (instance variables) | transactions (array), balance (number) |
+| Actions (methods)               | deposit, withdraw, print_statement     |
