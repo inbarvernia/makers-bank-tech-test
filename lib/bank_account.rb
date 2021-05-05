@@ -10,18 +10,18 @@ class BankAccount
     @transactions = []
   end
 
-  def deposit(amount, date = Date.today)
+  def deposit(amount)
     raise 'Deposit amount must be greater than 0' if amount <= 0
 
     @balance += amount
-    save_transaction(amount, date)
+    save_transaction(amount, Date.today)
   end
 
-  def withdraw(amount, date = Date.today)
+  def withdraw(amount)
     raise 'Withdrawal amount must be greater than 0' if amount <= 0
 
     @balance -= amount
-    save_transaction(-amount, date)
+    save_transaction(-amount, Date.today)
     # saving transaction with negative amount to indicate it as a withdrawal
   end
 

@@ -7,7 +7,7 @@ describe BankAccount do
 
   describe '#deposit' do
     it 'is a method that takes one or two arguments' do
-      expect(subject).to respond_to(:deposit).with(1..2).arguments
+      expect(subject).to respond_to(:deposit).with(1).argument
     end
 
     context 'when amount is a positive number' do
@@ -24,7 +24,8 @@ describe BankAccount do
 
     context 'when a date is provided' do
       it 'saves the transaction information provided' do
-        subject.deposit(1000, date)
+        allow(Date).to receive(:today).and_return Date.new(2012, 1, 10)
+        subject.deposit(1000)
         expect(subject.transactions).to include({ date: date, amount: 1000.0, balance: 1000.0 })
       end
     end
@@ -38,7 +39,7 @@ describe BankAccount do
 
   describe '#withdraw' do
     it 'is a method that takes one or two arguments' do
-      expect(subject).to respond_to(:withdraw).with(1..2).arguments
+      expect(subject).to respond_to(:withdraw).with(1).argument
     end
     context 'when amount is a positive amount' do
       it 'decreases balance by amount specified' do
@@ -54,7 +55,8 @@ describe BankAccount do
 
     context 'when a date is provided' do
       it 'saves the transaction information provided' do
-        subject.withdraw(1000, date)
+        allow(Date).to receive(:today).and_return Date.new(2012, 1, 10)
+        subject.withdraw(1000)
         expect(subject.transactions).to include({ date: date, amount: -1000.0, balance: -1000.0 })
       end
     end
@@ -75,7 +77,8 @@ describe BankAccount do
 
     context 'when one deposit has been made' do
       it 'prints a header followed by transaction details' do
-        subject.deposit(1000, date)
+        allow(Date).to receive(:today).and_return Date.new(2012, 1, 10)
+        subject.deposit(1000)
         expect { subject.print_statement }
           .to output("date || credit || debit || balance\n10/01/2012 || 1000.00 || || 1000.00").to_stdout
       end
@@ -83,7 +86,8 @@ describe BankAccount do
 
     context 'when one withdrawal has been made' do
       it 'prints a header followed by transaction details' do
-        subject.withdraw(1000, date)
+        allow(Date).to receive(:today).and_return Date.new(2012, 1, 10)
+        subject.withdraw(1000)
         expect { subject.print_statement }
           .to output("date || credit || debit || balance\n10/01/2012 || || 1000.00 || -1000.00").to_stdout
       end
@@ -91,11 +95,12 @@ describe BankAccount do
 
     context 'when multiple transactions have been made' do
       it 'prints a header followed by transactions in reverse chronological order' do
-        date2 = Date.new(2012, 1, 13)
-        date3 = Date.new(2012, 1, 14)
-        subject.deposit(1000, date)
-        subject.deposit(2000, date2)
-        subject.withdraw(500, date3)
+        allow(Date).to receive(:today).and_return Date.new(2012, 1, 10)
+        subject.deposit(1000)
+        allow(Date).to receive(:today).and_return Date.new(2012, 1, 13)
+        subject.deposit(2000)
+        allow(Date).to receive(:today).and_return Date.new(2012, 1, 14)
+        subject.withdraw(500)
         expect { subject.print_statement }
           .to output("date || credit || debit || balance\n14/01/2012 || || 500.00 || 2500.00\n13/01/2012 || 2000.00 || || 3000.00\n10/01/2012 || 1000.00 || || 1000.00").to_stdout
       end
