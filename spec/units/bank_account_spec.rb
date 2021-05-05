@@ -8,10 +8,6 @@ describe BankAccount do
   let(:another_transaction_double) { instance_double("Transaction", format_for_statement: "Second transaction formatted") }
 
   describe '#deposit' do
-    it 'is a method that takes one argument' do
-      expect(subject).to respond_to(:deposit).with(1).argument
-    end
-
     context 'when amount is a positive number' do
       it 'increases balance by amount specified' do
         expect { subject.deposit(1000) }.to change { subject.balance }.by(1000)
@@ -37,10 +33,6 @@ describe BankAccount do
   end
 
   describe '#withdraw' do
-    it 'is a method that takes one argument' do
-      expect(subject).to respond_to(:withdraw).with(1).argument
-    end
-
     context 'when amount is a positive number' do
       it 'decreases balance by amount specified' do
         expect { subject.withdraw(1000) }.to change { subject.balance }.by(-1000)
