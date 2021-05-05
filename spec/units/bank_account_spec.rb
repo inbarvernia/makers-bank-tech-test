@@ -4,7 +4,8 @@ require 'bank_account'
 
 describe BankAccount do
   let(:date) { Date.new(2012, 1, 10) }
-  let(:transaction_double) { double("Transaction") }
+  let(:transaction_double) { instance_double("Transaction", format_for_statement: "First transaction formatted") }
+  let(:another_transaction_double) { instance_double("Transaction", format_for_statement: "Second transaction formatted") }
 
   describe '#deposit' do
     it 'is a method that takes one argument' do
@@ -69,6 +70,22 @@ describe BankAccount do
       it 'prints a header' do
         expect { subject.print_statement }.to output("date || credit || debit || balance\n").to_stdout
       end
-    end    
+    end
+    context 'when one transaction has been made' do
+      it 'prints a header followed by the transaction' do
+        allow(Transaction).to receive(:new).and_return transaction_double
+        subject.deposit(1000)
+        expect { subject.print_statement }.to output("date || credit || debit || balance\nFirst transaction formatted").to_stdout
+      end
+    end
+    context 'when multiple transactions have been made' do
+      it 'prints a header followed by the transactionn in reverse chronological order' do
+        allow(Transaction).to receive(:new).and_return transaction_double
+        subject.deposit(1000)
+        allow(Transaction).to receive(:new).and_return another_transaction_double
+        subject.withdraw(500)
+        expect { subject.print_statement }.to output("date || credit || debit || balance\nSecond transaction formatted\nFirst transaction formatted").to_stdout
+      end
+    end
   end
 end
