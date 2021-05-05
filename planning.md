@@ -23,8 +23,3 @@
 | ------------------------------- | ----------------------------------- |
 | Properties (instance variables) | transactions (array), balance (int) |
 | Actions (methods)               | deposit, withdraw, print_statement  |
-
-Next steps:
-
-- TDD transactions being stored differently for withdrawals and deposite - either using +/- for amount, or adding a type = 'deposit'/'withdrawal' to transaction hashes
-- Test print_statement with multiple transactions to make sure it reverses order

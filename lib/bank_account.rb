@@ -58,6 +58,6 @@ class BankAccount
       formatted_transaction += "#{format('%.2f', transaction[:balance])}"
       formatted_transactions.push(formatted_transaction)
     end
-    formatted_transactions.join("\n")
+    formatted_transactions.reverse.join("\n")
   end
 end
