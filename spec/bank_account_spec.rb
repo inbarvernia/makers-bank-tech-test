@@ -40,13 +40,13 @@ describe BankAccount do
     context 'when a date is provided' do
       it 'saves the transaction information provided' do
         subject.withdraw(1000, date)
-        expect(subject.transactions).to include({ date: date, amount: -1000.0, balance: 1000.0 })
+        expect(subject.transactions).to include({ date: date, amount: -1000.0, balance: -1000.0 })
       end
     end
     context 'when a date is not provided' do
       it 'saves the transaction amount provided and current date' do
         subject.withdraw(1000)
-        expect(subject.transactions).to include({ date: Date.today, amount: -1000.0, balance: 1000.0 })
+        expect(subject.transactions).to include({ date: Date.today, amount: -1000.0, balance: -1000.0 })
       end
     end
   end

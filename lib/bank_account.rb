@@ -16,6 +16,8 @@ class BankAccount
 
   def withdraw(amount, date = Date.today)
     @balance -= amount
+    save_transaction(-amount, date)
+    # saving transaction with negative amount to indicate it as a withdrawal
   end
 
   def print_statement
