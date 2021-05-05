@@ -9,7 +9,7 @@ class BankAccount
     @transactions = []
   end
 
-  def deposit(amount, date)
+  def deposit(amount, date = Date.today)
     @balance += amount
     save_transaction(amount, date)
   end

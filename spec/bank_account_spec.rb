@@ -7,16 +7,23 @@ describe BankAccount do
 
   describe '#deposit' do
     it 'is a method that takes two arguments' do
-      expect(subject).to respond_to(:deposit).with(2).arguments
+      expect(subject).to respond_to(:deposit).with(1..2).arguments
     end
 
     it 'increases balance by amount specified' do
       expect { subject.deposit(1000, date) }.to change { subject.balance }.by(1000)
     end
-
-    it 'saves the transaction information' do
-      subject.deposit(1000, date)
-      expect(subject.transactions).to include({ date: date, amount: 1000.0, balance: 1000.0 })
+    context 'when a date is provided' do
+      it 'saves the transaction information provided' do
+        subject.deposit(1000, date)
+        expect(subject.transactions).to include({ date: date, amount: 1000.0, balance: 1000.0 })
+      end
+    end
+    context 'when a date is not provided' do
+      it 'saves the transaction amount provided and current date' do
+        subject.deposit(1000)
+        expect(subject.transactions).to include({ date: Date.today, amount: 1000.0, balance: 1000.0 })
+      end
     end
   end
 
