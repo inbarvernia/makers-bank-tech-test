@@ -36,7 +36,7 @@ I started by creating a domain model (in `planning.md`); I then developed a Bank
 - If a user attempts to withdraw or deposit a negative amount or zero, an error will be raised
 - Users can call the method `#print_statement` to view a simple statement of their transaction history in reverse chronological order, including dates, amount in credit or debit, and balance at the time, for each transaction, with appropriate column headings
 
-I have used an additional class called Transaction, whose instances represent individual transactions. This is not interacted with directly by the user, but is used by the BankAccount class to save and access transaction details, following the Single-Responsibility Priniciple.
+I have used an additional class called Transaction, whose instances represent individual transactions. This is not interacted with directly by the user, but is used by the BankAccount class to save and access transaction details, following the Single-Responsibility Priniciple. Given more time, a further change I would make would be to extract an additional class (perhaps AccountStatement), to facilitate interactions between BankAccount and Transaction by storing transactions and taking on the methods currently listed as private methods of the BankAccount class (i.e. those relating to storing statement information and formatting it for printing); this would further employ SRP so that the BankAccount class would only be used for direct interaction by the user.
 
 ### How to use and run tests
 
