@@ -2,8 +2,8 @@ require 'transaction'
 
 describe Transaction do
   let(:date) { Date.new(2012, 1, 10) }
-  let(:transaction) { Transaction.new(date: date, amount: 1000, balance: 3000) }
-  let(:withdrawal) { Transaction.new(date: date, amount: -1000, balance: -1000) }
+  let(:transaction) { described_class.new(date: date, amount: 1000, balance: 3000) }
+  let(:withdrawal) { described_class.new(date: date, amount: -1000, balance: -1000) }
 
   describe '#initialize' do
     it 'creates a new transaction instance with date, amount, and balance attributes' do
