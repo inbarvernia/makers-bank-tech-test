@@ -40,9 +40,16 @@ describe BankAccount do
     it 'is a method that takes one or two arguments' do
       expect(subject).to respond_to(:withdraw).with(1..2).arguments
     end
-
-    it 'decreases balance by amount specified' do
-      expect { subject.withdraw(1000, date) }.to change { subject.balance }.by(-1000)
+    context 'when amount is a positive amount' do
+      it 'decreases balance by amount specified' do
+        expect { subject.withdraw(1000) }.to change { subject.balance }.by(-1000)
+      end
+    end
+    context 'when amount is 0 or less' do
+      it 'throws an error message' do
+        expect { subject.withdraw(-1000) }.to raise_error("Withdrawal amount must be greater than 0")
+        expect { subject.withdraw(0) }.to raise_error("Withdrawal amount must be greater than 0")
+      end
     end
 
     context 'when a date is provided' do

@@ -16,6 +16,7 @@ class BankAccount
   end
 
   def withdraw(amount, date = Date.today)
+    raise "Withdrawal amount must be greater than 0" if amount <= 0
     @balance -= amount
     save_transaction(-amount, date)
     # saving transaction with negative amount to indicate it as a withdrawal
