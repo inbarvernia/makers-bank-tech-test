@@ -10,6 +10,7 @@ class BankAccount
   end
 
   def deposit(amount, date = Date.today)
+    raise "Deposit amount must be greater than 0" if amount <= 0
     @balance += amount
     save_transaction(amount, date)
   end
