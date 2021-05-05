@@ -114,8 +114,8 @@
         "lines": [
           null,
           null,
-          null,
-          null,
+          1,
+          1,
           null,
           null,
           1,
@@ -177,25 +177,6 @@
           null
         ]
       },
-      "/Users/inbarvernia/Projects/Week10/makers-bank-tech-test/spec/units/transaction_spec.rb": {
-        "lines": [
-          1,
-          null,
-          1,
-          2,
-          null,
-          null,
-          1,
-          1,
-          1,
-          1,
-          1,
-          1,
-          null,
-          null,
-          null
-        ]
-      },
       "/Users/inbarvernia/Projects/Week10/makers-bank-tech-test/lib/transaction.rb": {
         "lines": [
           null,
@@ -205,14 +186,57 @@
           1,
           null,
           1,
-          12,
-          12,
-          12,
+          14,
+          14,
+          14,
+          null,
+          null,
+          1,
+          2,
+          2,
+          1,
+          null,
+          1,
+          null,
+          null,
+          2,
+          null,
+          null
+        ]
+      },
+      "/Users/inbarvernia/Projects/Week10/makers-bank-tech-test/spec/units/transaction_spec.rb": {
+        "lines": [
+          1,
+          null,
+          1,
+          4,
+          3,
+          2,
+          null,
+          1,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          null,
+          1,
+          1,
+          1,
+          1,
+          null,
+          null,
+          1,
+          1,
+          1,
+          null,
+          null,
           null,
           null
         ]
       }
     },
-    "timestamp": 1620226171
+    "timestamp": 1620228019
   }
 }
