@@ -35,7 +35,6 @@ I started by creating a domain model (in `planning.md`); I then developed a Bank
 - Users can deposit money using the `#deposit` method and withdraw money using the `#withdraw` method
 - If a user attempts to withdraw or deposit a negative amount or zero, an error will be raised
 - Users can call the method `#print_statement` to view a simple statement of their transaction history in reverse chronological order, including dates, amount in credit or debit, and balance at the time, for each transaction, with appropriate column headings
-- For the purpose of the exercise (and to be able to test the specific acceptance criteria given), I wrote the `#withdraw` and `#deposit` methods so that they can optionally take a date as an argument (defaulting to the current date if none is specified), so that I could test for transactions made on specific days; however, ultimately I would not want users to be able to specify the date of their own transactions (and it would additionally cause the transactions to be displayed in reverse order or when they were received instead of when they were made, although this could be changed by changing the logic of how they are ordered in the `format_transactions` method). A better way of doing it would be to stub the dates in the tests.
 
 ### How to use and run tests
 
