@@ -14,6 +14,10 @@ class BankAccount
     save_transaction(amount, date)
   end
 
+  def withdraw(amount, date = Date.today)
+
+  end
+
   def print_statement
     print statement_header
     print format_transactions
