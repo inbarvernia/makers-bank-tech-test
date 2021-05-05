@@ -6,13 +6,16 @@ describe BankAccount do
   let(:date) { Date.new(2012, 1, 10) }
 
   describe '#deposit' do
-    it 'is a method that takes one or two arguments' do
+    it 'is a method that takes one argument' do
       expect(subject).to respond_to(:deposit).with(1).argument
     end
 
     context 'when amount is a positive number' do
       it 'increases balance by amount specified' do
         expect { subject.deposit(1000) }.to change { subject.balance }.by(1000)
+      end
+      it 'confirms the deposit and amount' do
+        expect(subject.deposit(1000)).to eq("You've successfully deposited 1000")
       end
     end
     context 'when amount is negative or 0' do
@@ -38,12 +41,16 @@ describe BankAccount do
   end
 
   describe '#withdraw' do
-    it 'is a method that takes one or two arguments' do
+    it 'is a method that takes one argument' do
       expect(subject).to respond_to(:withdraw).with(1).argument
     end
+
     context 'when amount is a positive amount' do
       it 'decreases balance by amount specified' do
         expect { subject.withdraw(1000) }.to change { subject.balance }.by(-1000)
+      end
+      it 'confirms the withdrawal and amount' do
+        expect(subject.withdraw(1000)).to eq("You've successfully withdrawn 1000")
       end
     end
     context 'when amount is 0 or less' do

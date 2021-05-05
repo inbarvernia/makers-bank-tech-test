@@ -2,6 +2,7 @@
 
 require 'date'
 
+# This class represents a basic bank account model
 class BankAccount
   attr_reader :balance, :transactions
 
@@ -15,6 +16,7 @@ class BankAccount
 
     @balance += amount
     save_transaction(amount, Date.today)
+    "You've successfully deposited #{amount}"
   end
 
   def withdraw(amount)
@@ -23,6 +25,7 @@ class BankAccount
     @balance -= amount
     save_transaction(-amount, Date.today)
     # saving transaction with negative amount to indicate it as a withdrawal
+    "You've successfully withdrawn #{amount}"
   end
 
   def print_statement
