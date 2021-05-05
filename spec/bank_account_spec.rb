@@ -13,6 +13,7 @@ describe BankAccount do
     it 'increases balance by amount specified' do
       expect { subject.deposit(1000, date) }.to change { subject.balance }.by(1000)
     end
+
     context 'when a date is provided' do
       it 'saves the transaction information provided' do
         subject.deposit(1000, date)
@@ -30,6 +31,10 @@ describe BankAccount do
   describe '#withdraw' do
     it 'is a method that takes one or two arguments' do
       expect(subject).to respond_to(:withdraw).with(1..2).arguments
+    end
+
+    it 'decreases balance by amount specified' do
+      expect { subject.withdraw(1000, date) }.to change { subject.balance }.by(-1000)
     end
   end
 
