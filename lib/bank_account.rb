@@ -15,10 +15,8 @@ class BankAccount
   end
 
   def print_statement
-    print "date || credit || debit || balance\n"
-    @transactions.each do |transaction|
-      print "#{transaction[:date].strftime('%d/%m/%Y')} || #{format('%.2f', transaction[:amount])} || || #{format('%.2f', transaction[:balance])}"
-    end
+    print statement_header
+    print format_transactions
   end
 
   private
@@ -30,5 +28,18 @@ class BankAccount
       balance: @balance.to_f
     }
     @transactions.push(transaction)
+  end
+
+  def statement_header
+    "date || credit || debit || balance\n"
+  end
+
+  def format_transactions
+    formatted_transactions = []
+    @transactions.each do |transaction|
+      formatted_transaction = "#{transaction[:date].strftime('%d/%m/%Y')} || #{format('%.2f', transaction[:amount])} || || #{format('%.2f', transaction[:balance])}"
+      formatted_transactions.push(formatted_transaction)
+    end
+    formatted_transactions.join("\n")
   end
 end
