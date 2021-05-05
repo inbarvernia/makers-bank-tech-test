@@ -36,6 +36,19 @@ describe BankAccount do
     it 'decreases balance by amount specified' do
       expect { subject.withdraw(1000, date) }.to change { subject.balance }.by(-1000)
     end
+
+    context 'when a date is provided' do
+      it 'saves the transaction information provided' do
+        subject.withdraw(1000, date)
+        expect(subject.transactions).to include({ date: date, amount: 1000.0, balance: 1000.0 })
+      end
+    end
+    context 'when a date is not provided' do
+      it 'saves the transaction amount provided and current date' do
+        subject.withdraw(1000)
+        expect(subject.transactions).to include({ date: Date.today, amount: 1000.0, balance: 1000.0 })
+      end
+    end
   end
 
   describe '#print_statement' do
@@ -45,7 +58,7 @@ describe BankAccount do
       end
     end
 
-    context 'when one transaction has been made' do
+    context 'when one deposit has been made' do
       it 'prints a header followed by transaction details' do
         subject.deposit(1000, date)
         expect { subject.print_statement }

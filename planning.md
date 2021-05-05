@@ -26,5 +26,8 @@
 
 Next steps:
 
-- TDD withdrawals similarly to deposits
+- Test print_statement using withdrawals to make sure it differentiates money in from money out
+  |
+  V
+- TDD transactions being stored differently for withdrawals and deposite - either using +/- for amount, or adding a type = 'deposit'/'withdrawal' to transaction hashes
 - Test print_statement with multiple transactions to make sure it reverses order
