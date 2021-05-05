@@ -4,11 +4,21 @@ require 'bank_account'
 
 describe BankAccount do
   describe 'depositing' do
-    
+    it 'saves the transaction information provided' do
+      date = Date.new(2012, 1, 10)
+      allow(Date).to receive(:today).and_return(date)
+      subject.deposit(1000)
+      expect(subject.transactions.last).to have_attributes(:date => date,:amount => 1000.0, :balance => 1000.0)
+    end
   end
 
   describe 'withdrawing' do
-    
+    it 'saves the transaction information provided' do
+      date = Date.new(2012, 1, 10)
+      allow(Date).to receive(:today).and_return(date)
+      subject.withdraw(1000)
+      expect(subject.transactions.last).to have_attributes(:date => date,:amount => -1000.0, :balance => -1000.0)
+    end
   end
 
   describe 'printing a statement' do

@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 require 'date'
-require 'transaction'
+require_relative 'transaction'
 
 # This class represents a basic bank account model
 class BankAccount

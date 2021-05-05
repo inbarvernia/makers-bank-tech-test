@@ -45,27 +45,30 @@ I started by creating a domain model (in `planning.md`); I then developed a Bank
 5. Create an instance of the BankAccount class and play around using the `deposit`, `withdraw`, and `print_statement` methods on the instance
 6. To run the unit tests, quit the REPL and run `rspec`
 
-#### Basic demo in Pry:
+#### Basic demo in IRB:
 
 ```
-[1] pry(main)> require './lib/bank_account'
-=> true
-[2] pry(main)> account = BankAccount.new
-=> #<BankAccount:0x00007fd40aa3f878 @balance=0, @transactions=[]>
-[3] pry(main)> account.deposit(-100)
-RuntimeError: Deposit amount must be greater than 0
-from /Users/inbarvernia/Projects/Week10/makers-bank-tech-test/lib/bank_account.rb:14:in `deposit'
-[4] pry(main)> account.deposit(1000)
-=> [{:date=>#<Date: 2021-05-05 ((2459340j,0s,0n),+0s,2299161j)>, :amount=>1000.0, :balance=>1000.0}]
-[5] pry(main)> account.withdraw(500)
-=> [{:date=>#<Date: 2021-05-05 ((2459340j,0s,0n),+0s,2299161j)>, :amount=>1000.0, :balance=>1000.0},
- {:date=>#<Date: 2021-05-05 ((2459340j,0s,0n),+0s,2299161j)>, :amount=>-500.0, :balance=>500.0}]
-[6] pry(main)> account.withdraw(0)
-RuntimeError: Withdrawal amount must be greater than 0
-from /Users/inbarvernia/Projects/Week10/makers-bank-tech-test/lib/bank_account.rb:21:in `withdraw'
-[7] pry(main)> account.print_statement
+3.0.0 :001 > require './lib/bank_account'
+ => true
+3.0.0 :002 > account = BankAccount.new
+ => #<BankAccount:0x00007f7f73869940 @balance=0, @transactions=[]>
+3.0.0 :003 > account.deposit(-500)
+Traceback (most recent call last):
+        [...]makers-bank-tech-test/lib/bank_account.rb:16:in `deposit'
+RuntimeError (Deposit amount must be greater than 0)
+3.0.0 :004 > account.deposit(300)
+ => "You've successfully deposited 300"
+3.0.0 :005 > account.print_statement
 date || credit || debit || balance
-05/05/2021 || || 500.00 || 500.00
-05/05/2021 || 1000.00 || || 1000.00=> nil
-[8] pry(main)> quit
+05/05/2021 || 300.00 || || 300.00 => nil
+3.0.0 :006 > account.withdraw(0)
+Traceback (most recent call last):
+        [...]makers-bank-tech-test/lib/bank_account.rb:24:in `withdraw'
+RuntimeError (Withdrawal amount must be greater than 0)
+3.0.0 :007 > account.withdraw(50)
+ => "You've successfully withdrawn 50"
+3.0.0 :008 > account.print_statement
+date || credit || debit || balance
+05/05/2021 || || 50.00 || 250.00
+05/05/2021 || 300.00 || || 300.00 => nil
 ```
