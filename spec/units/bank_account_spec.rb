@@ -4,6 +4,7 @@ require 'bank_account'
 
 describe BankAccount do
   let(:date) { Date.new(2012, 1, 10) }
+  let(:transaction_double) { double("Transaction") }
 
   describe '#deposit' do
     it 'is a method that takes one argument' do
@@ -17,25 +18,19 @@ describe BankAccount do
       it 'confirms the deposit and amount' do
         expect(subject.deposit(1000)).to eq("You've successfully deposited 1000")
       end
+      it 'adds the transaction to list of account transactions' do
+        expect { subject.deposit(1000) }.to change { subject.transactions.length }.by(1)
+      end
+      it 'saves the transaction information provided' do
+        allow(Transaction).to receive(:new).and_return transaction_double
+        subject.deposit(1000)
+        expect(subject.transactions).to include(transaction_double)
+      end
     end
     context 'when amount is negative or 0' do
       it 'throws an error message' do
         expect { subject.deposit(-1000) }.to raise_error('Deposit amount must be greater than 0')
         expect { subject.deposit(0) }.to raise_error('Deposit amount must be greater than 0')
-      end
-    end
-
-    context 'when a date is provided' do
-      it 'saves the transaction information provided' do
-        allow(Date).to receive(:today).and_return Date.new(2012, 1, 10)
-        subject.deposit(1000)
-        expect(subject.transactions).to include({ date: date, amount: 1000.0, balance: 1000.0 })
-      end
-    end
-    context 'when a date is not provided' do
-      it 'saves the transaction amount provided and current date' do
-        subject.deposit(1000)
-        expect(subject.transactions).to include({ date: Date.today, amount: 1000.0, balance: 1000.0 })
       end
     end
   end
@@ -45,32 +40,26 @@ describe BankAccount do
       expect(subject).to respond_to(:withdraw).with(1).argument
     end
 
-    context 'when amount is a positive amount' do
+    context 'when amount is a positive number' do
       it 'decreases balance by amount specified' do
         expect { subject.withdraw(1000) }.to change { subject.balance }.by(-1000)
       end
       it 'confirms the withdrawal and amount' do
         expect(subject.withdraw(1000)).to eq("You've successfully withdrawn 1000")
       end
+      it 'adds the transaction to list of account transactions' do
+        expect { subject.withdraw(1000) }.to change { subject.transactions.length }.by(1)
+      end
+      it 'saves the transaction information provided' do
+        allow(Transaction).to receive(:new).and_return transaction_double
+        subject.withdraw(1000)
+        expect(subject.transactions).to include(transaction_double)
+      end
     end
     context 'when amount is 0 or less' do
       it 'throws an error message' do
         expect { subject.withdraw(-1000) }.to raise_error('Withdrawal amount must be greater than 0')
         expect { subject.withdraw(0) }.to raise_error('Withdrawal amount must be greater than 0')
-      end
-    end
-
-    context 'when a date is provided' do
-      it 'saves the transaction information provided' do
-        allow(Date).to receive(:today).and_return Date.new(2012, 1, 10)
-        subject.withdraw(1000)
-        expect(subject.transactions).to include({ date: date, amount: -1000.0, balance: -1000.0 })
-      end
-    end
-    context 'when a date is not provided' do
-      it 'saves the transaction amount provided and current date' do
-        subject.withdraw(1000)
-        expect(subject.transactions).to include({ date: Date.today, amount: -1000.0, balance: -1000.0 })
       end
     end
   end

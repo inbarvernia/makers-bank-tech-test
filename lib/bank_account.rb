@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 require 'date'
+require 'transaction'
 
 # This class represents a basic bank account model
 class BankAccount
@@ -36,11 +37,7 @@ class BankAccount
   private
 
   def save_transaction(amount, date)
-    transaction = {
-      date: date,
-      amount: amount.to_f,
-      balance: @balance.to_f
-    }
+    transaction = Transaction.new(date: date, amount: amount, balance: @balance)
     @transactions.push(transaction)
   end
 
@@ -51,14 +48,14 @@ class BankAccount
   def format_transactions
     formatted_transactions = []
     @transactions.each do |transaction|
-      formatted_transaction = "#{transaction[:date].strftime('%d/%m/%Y')} || "
-      if transaction[:amount] > 0
-        formatted_transaction += "#{format('%.2f', transaction[:amount])} || || "
+      formatted_transaction = "#{transaction.date.strftime('%d/%m/%Y')} || "
+      if transaction.amount.positive?
+        formatted_transaction += "#{format('%.2f', transaction.amount)} || || "
       else
-        formatted_transaction += "|| #{format('%.2f', transaction[:amount].abs)} || "
-        # Using absolute value of transaction[:amount] because it will now appear under debit and should therefore be a positive amount
+        formatted_transaction += "|| #{format('%.2f', transaction.amount.abs)} || "
+        # Using transaction[:amount].abs because it will now appear under debit and should therefore be a positive amount
       end
-      formatted_transaction += "#{format('%.2f', transaction[:balance])}"
+      formatted_transaction += "#{format('%.2f', transaction.balance)}"
       formatted_transactions.push(formatted_transaction)
     end
     formatted_transactions.reverse.join("\n")

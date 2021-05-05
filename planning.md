@@ -23,3 +23,8 @@
 | ------------------------------- | -------------------------------------- |
 | Properties (instance variables) | transactions (array), balance (number) |
 | Actions (methods)               | deposit, withdraw, print_statement     |
+
+| Class (Owner)                   | Transaction           |
+| ------------------------------- | --------------------- |
+| Properties (instance variables) | date, amount, balance |
+| Actions (methods)               | format                |
