@@ -80,5 +80,13 @@ describe BankAccount do
           .to output("date || credit || debit || balance\n10/01/2012 || 1000.00 || || 1000.00").to_stdout
       end
     end
+
+    context 'when one withdrawal has been made' do
+      it 'prints a header followed by transaction details' do
+        subject.withdraw(1000, date)
+        expect { subject.print_statement }
+          .to output("date || credit || debit || balance\n10/01/2012 || || 1000.00 || -1000.00").to_stdout
+      end
+    end
   end
 end
