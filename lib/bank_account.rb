@@ -48,7 +48,14 @@ class BankAccount
   def format_transactions
     formatted_transactions = []
     @transactions.each do |transaction|
-      formatted_transaction = "#{transaction[:date].strftime('%d/%m/%Y')} || #{format('%.2f', transaction[:amount])} || || #{format('%.2f', transaction[:balance])}"
+      formatted_transaction = "#{transaction[:date].strftime('%d/%m/%Y')} || "
+      if transaction[:amount] > 0
+        formatted_transaction += "#{format('%.2f', transaction[:amount])} || || "
+      else
+        formatted_transaction += "|| #{format('%.2f', transaction[:amount].abs)} || "
+        # Using absolute value of transaction[:amount] because it will now appear under debit and should therefore be a positive amount
+      end
+      formatted_transaction += "#{format('%.2f', transaction[:balance])}"
       formatted_transactions.push(formatted_transaction)
     end
     formatted_transactions.join("\n")
