@@ -15,7 +15,7 @@ class BankAccount
   end
 
   def withdraw(amount, date = Date.today)
-
+    @balance -= amount
   end
 
   def print_statement
